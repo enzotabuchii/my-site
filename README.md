@@ -10,7 +10,7 @@ e atualizados a cada hora.
 
 ```bash
 pnpm install
-pnpm dev          # http://localhost:3000
+pnpm dev
 pnpm build && pnpm start
 ```
 
@@ -25,13 +25,9 @@ Requer Node.js 18.18 ou mais novo.
 - `components/RobotArm.tsx`: tamanho dos elos, velocidade e o desenho do braço.
 - `components/PortugalEgg.tsx`: o easter egg.
 
-## Easter egg 🇵🇹
+## 🇵🇹
 
-Digite `portugal`, `saudade` ou `bacalhau` em qualquer lugar da página, ou clique nas coordenadas
-do rodapé (é o Cabo da Roca). O site muda para verde e vermelho, uma caravela atravessa a tela,
+Digite `portugal`, `siu` ou `funchal` em qualquer lugar da página, ou clique nas coordenadas
+do rodapé (é na Madalena do Mar). O site muda para verde e vermelho, uma caravela atravessa a tela,
 o braço passa a segurar um pastel de nata e aparece uma frase escondida na seção Sobre.
 `Esc` desliga. O console do navegador dá uma dica para quem for curioso.
-
-## Deploy
-
-Na Vercel: importe o repositório e pronto, ela detecta Next.js sozinha.

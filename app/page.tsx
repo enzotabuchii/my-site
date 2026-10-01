@@ -1,4 +1,4 @@
-import PortugalEgg, { PortugalTrigger } from "@/components/PortugalEgg";
+import PortugalEgg, { DelgadoTrigger, PortugalTrigger } from "@/components/PortugalEgg";
 import RobotArm from "@/components/RobotArm";
 import { carreira, perfil, projetos, sobre, stack } from "@/data/content";
 import { getRepos, tempoRelativo } from "@/lib/github";
@@ -25,9 +25,13 @@ export default async function Home() {
         <section className="hero wrap">
           <div className="hero-texto">
             <h1 className="nome">
-              {perfil.nome.map((parte) => (
-                <span key={parte}>{parte}</span>
-              ))}
+              {perfil.nome.map((parte) =>
+                parte === "Delgado" ? (
+                  <DelgadoTrigger key={parte}>{parte}</DelgadoTrigger>
+                ) : (
+                  <span key={parte}>{parte}</span>
+                )
+              )}
             </h1>
             <div className="apresentacao">
               <div className="foto">

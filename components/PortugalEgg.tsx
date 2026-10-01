@@ -4,10 +4,36 @@ import { curiosidadesPortugal } from "@/data/content";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 // Easter egg: digite "portugal", "siu" ou "funchal" em qualquer lugar da página,
-// ou clique nas coordenadas do rodapé.
+// clique nas coordenadas do rodapé, ou clique 7 vezes no sobrenome "Delgado".
 
 const PALAVRAS = ["portugal", "siu", "funchal"];
 const EVENTO = "modo-portugal";
+const CLIQUES_NECESSARIOS = 7;
+const CLIQUE_TIMEOUT = 3000; // reseta se demorar mais de 3s entre cliques
+
+export function DelgadoTrigger({ children }: { children: React.ReactNode }) {
+  const cliques = useRef(0);
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  const handleClick = useCallback(() => {
+    clearTimeout(timer.current);
+    cliques.current += 1;
+    if (cliques.current >= CLIQUES_NECESSARIOS) {
+      cliques.current = 0;
+      window.dispatchEvent(new Event(EVENTO));
+    } else {
+      timer.current = setTimeout(() => {
+        cliques.current = 0;
+      }, CLIQUE_TIMEOUT);
+    }
+  }, []);
+
+  return (
+    <span onClick={handleClick} style={{ cursor: "default" }}>
+      {children}
+    </span>
+  );
+}
 
 export function PortugalTrigger() {
   return (
@@ -35,7 +61,7 @@ export default function PortugalEgg() {
 
   useEffect(() => {
     console.log(
-      "%cOlá! Este site guarda um segredo... Tente digitar uma palavra bem portuguesa.",
+      "%cOlá! Este site guarda um segredo... Tente digitar uma palavra bem portuguesa, ou clique 7 vezes no sobrenome certo.",
       "color:#046A38;font-weight:700;font-size:13px"
     );
 

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Chakra_Petch, Instrument_Sans } from "next/font/google";
 import "./globals.css";
+import Tracker from "@/components/Tracker";
 
 const display = Chakra_Petch({
   subsets: ["latin"],
@@ -39,7 +40,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={`${display.variable} ${texto.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Tracker />
+        {children}
+      </body>
     </html>
   );
 }
